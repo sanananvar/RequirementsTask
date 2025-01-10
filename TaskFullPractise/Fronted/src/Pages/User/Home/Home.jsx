@@ -1,9 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaHeart, FaShoppingBasket } from 'react-icons/fa';
+import { useContext } from 'react';
+import { favoriteContext } from '../../../Context/FavoritesContext';
 
 function Home() {
     const [requirement, setRequirements] = useState([]);
+    let {favorites,setFavorites}=useContext(favoriteContext)
+    
+    function handleAddFavorite(requirement) {
+        let findFavorite = favorites.find(favorite => favorite.id == requirement.id)
+        if (findFavorite) {
+          alert("Bu mehsul artiq favoritesde movducddur")
+        } else {
+          setFavorites([...favorites, requirement])
+        }
+    
+      }
 
     function GetData() {
         axios
@@ -42,7 +55,7 @@ function Home() {
                                     <span className="country">{req.country}</span>
                                     <h2>{req.title}</h2>
                                     <p>{req.description}</p>
-                                    <button style={{ backgroundColor: 'white', border: "none" ,marginRight:"10px"}}> <FaHeart /></button>
+                                    <button onClick={()=>handleAddFavorite(requirement)} style={{ backgroundColor: 'white', border: "none" ,marginRight:"10px"}}> <FaHeart /></button>
                                     <button style={{ backgroundColor: 'white', border: "none" }}><FaShoppingBasket /></button>
                                 </div>
                                 <button onClick={() => handleDelete(req._id)} className='card-btn'>delete</button>

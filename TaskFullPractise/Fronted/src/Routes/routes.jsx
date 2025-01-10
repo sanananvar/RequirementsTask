@@ -4,6 +4,7 @@ import UserRoot from "../Pages/User/UserRoot";
 import AdminRoot from "../Pages/Admin/AdminRoot";
 import Dashboard from "../Pages/Admin/Dashboard/Dashboard";
 import AddRequirement from "../Pages/Admin/Add/Add";
+import Wishlist from "../Pages/User/Wishlist/Wishlist";
 
 const routes = createBrowserRouter(
     [
@@ -15,6 +16,10 @@ const routes = createBrowserRouter(
                     path:"",
                     element:<Home/>
                 },
+                {
+                    path:"Wishlist",
+                    element:<Wishlist/>
+                }
                 
             ]
         },{
